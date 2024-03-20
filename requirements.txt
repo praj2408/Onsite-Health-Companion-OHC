@@ -1,0 +1,8 @@
+numpy
+opencv-python
+scikit_learn
+
+
+
+
+-e .
