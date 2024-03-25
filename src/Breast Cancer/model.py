@@ -1,6 +1,3 @@
-'''@Nishant Banjade'''
-
-'''Breast cancer prediction'''
 
 #import libraries
 import numpy as np
