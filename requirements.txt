@@ -1,6 +1,10 @@
 numpy
 opencv-python
-scikit_learn
+scikit-learn
+pandas
+missingno
+matplotlib
+seaborn
 
 
 

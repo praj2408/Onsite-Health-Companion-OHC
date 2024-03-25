@@ -12,7 +12,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import mean_squared_error
 from sklearn import metrics
-from sklearn.metrics import plot_confusion_matrix, accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report
 import joblib
 
 # read the dataset
