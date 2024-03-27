@@ -5,7 +5,11 @@ pandas
 missingno
 matplotlib
 seaborn
-
+streamlit
+tensorflow
+streamlit==1.31.1
+streamlit-extras==0.4.0
+st-annotated-text==4.0.1
 
 
 
