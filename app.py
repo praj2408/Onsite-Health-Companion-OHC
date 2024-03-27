@@ -17,7 +17,7 @@ with st.sidebar:
     st.title("Onsite Health Diagnostics-OHD")
     
 
-    diseases = ["Diabetes Prediction","Breast Cancer","Performance Measures","Prediction"]
+    diseases = ["Diabetes Prediction","Breast Cancer","Heart Disease Prediction","Prediction"]
 
     
 
@@ -60,6 +60,27 @@ if selected_diseases == "Breast Cancer":
     fractal_dimension_se = st.number_input("Fractal Dimension Mean", 0.05, 0.097, 0.062)
     symmetry_worst = st.number_input("Symmetry Worst", 0.106, 0.304, 0.181)
     fractal_dimension_worst = st.number_input("Fractal_Dimension_Worst", 0.055040, value=0.080040)
+
+
+
+
+
+if selected_diseases == "Heart Disease Prediction":
+    
+    st.title("HEART DISEASE PREDICTION")
+    
+    # Input fields for user to input data
+    age = st.number_input("Age", 29, 77, 50)
+    sex = st.selectbox("Sex", ["Male", "Female"])
+    ChestPainType = st.selectbox("Chest Pain Type", ["Typical Angina", "Atypical Angina", "Non-anginal Pain", "Asymptomatic"])
+    RestingBP = st.number_input("Resting Blood Pressure (mm Hg)", 94, 200, 120)
+    Cholesterol = st.number_input("Serum Cholesterol (mg/dl)", 126, 564, 240)
+    FastingBS = st.selectbox("Fasting Blood Sugar > 120 mg/dl", ["True", "False"])
+    RestingECG = st.selectbox("Resting Electrocardiographic Results", ["Normal", "ST-T wave abnormality", "Probable or Definite Left Ventricular Hypertrophy"])
+    MaxHR = st.number_input("Maximum Heart Rate Achieved", 71, 202, 150)
+    ExerciseAngina = st.selectbox("Exercise Induced Angina", ["Yes", "No"])
+    Oldpeak = st.number_input("ST Depression Induced by Exercise Relative to Rest", 0.0, 6.2, 2.0)
+    ST_Slope = st.selectbox("Slope of the Peak Exercise ST Segment", ["Upsloping", "Flat", "Downsloping"])
 
 
 
