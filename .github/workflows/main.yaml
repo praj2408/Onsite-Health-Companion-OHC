@@ -1,0 +1,34 @@
+name: Deploy Streamlit App to Hugging Face Spaces
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          
+
+      - name: Run Streamlit app
+        run: streamlit run app.py
+
+      - name: Publish to Hugging Face Spaces
+        uses: huggingface/huggingface_hub-action@master
+        with:
+          spaces_repo: "praj2408/Onsite-Health-Diagnostic"
+          api_key: ${{ secrets.HUGGINGFACE_API_KEY }}
+          filename: "app.py"
+          model_id: "praj2408/Onsite-Health-Diagnostic"
