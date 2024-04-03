@@ -12,7 +12,7 @@ from PIL import Image
 import numpy as np
 
 
-from prediction_pipeline import diabetes_prediction
+from prediction_pipeline import diabetes_prediction, breast_cancer_prediction
 
 
 
@@ -78,7 +78,13 @@ if selected_diseases == "Breast Cancer":
     symmetry_worst = st.number_input("Symmetry Worst", 0.106, 0.304, 0.181)
     fractal_dimension_worst = st.number_input("Fractal_Dimension_Worst", 0.055040, value=0.080040)
 
-
+    if st.button("Predict"):
+        prediction = breast_cancer_prediction(data=[radius_mean,area_mean,compactness_mean,concavity_mean,concave_points_mean,area_worst,compactness_worst,concavity_worst,area_se,fractal_dimension_se,symmetry_worst,fractal_dimension_worst])
+        
+        if prediction==1:
+            st.write("The patient has Breast Cancer")
+        else:
+            st.write("The patient does not have Breast Cancer")
 
 
 
@@ -99,7 +105,44 @@ if selected_diseases == "Heart Disease Prediction":
     Oldpeak = st.number_input("ST Depression Induced by Exercise Relative to Rest", 0.0, 6.2, 2.0)
     ST_Slope = st.selectbox("Slope of the Peak Exercise ST Segment", ["Upsloping", "Flat", "Downsloping"])
 
-
+    #converting categorical into numerical
+    sex = 1 if sex == "Male" else 0
+    
+    if ChestPainType == "Typical Angina":
+        ChestPainType = 0
+    elif ChestPainType == "Atypical Angina":
+        ChestPainType = 1
+    elif ChestPainType == "Non-anginal Pain":
+        ChestPainType = 2
+    else:
+        ChestPainType = 3
+        
+        
+    if FastingBS == "True":
+        FastingBS = 1
+    else:
+        FastingBS = 0
+        
+    if RestingECG == "Normal":
+        RestingECG = 0
+    elif RestingECG == "ST-T wave abnormality":
+        RestingECG = 1
+    else:
+        RestingECG = 2
+        
+    if ExerciseAngina == "Yes":
+        ExerciseAngina = 1
+    else:
+        ExerciseAngina = 0
+        
+    if ST_Slope == "Upsloping":
+        ST_Slope = 0
+    elif ST_Slope == "Flat":
+        ST_Slope = 1
+    else:
+        ST_Slope = 2
+    
+    
 
 if selected_diseases == "Malaria Detection":
     
