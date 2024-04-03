@@ -12,7 +12,7 @@ from PIL import Image
 import numpy as np
 
 
-from prediction_pipeline import diabetes_prediction, breast_cancer_prediction
+from prediction_pipeline import diabetes_prediction, breast_cancer_prediction, heart_disease_prediction
 
 
 
@@ -141,6 +141,15 @@ if selected_diseases == "Heart Disease Prediction":
         ST_Slope = 1
     else:
         ST_Slope = 2
+        
+        
+    if st.button("Predict"):
+        prediction = heart_disease_prediction(data=[age,sex,ChestPainType,RestingBP,Cholesterol,FastingBS,RestingECG,MaxHR,ExerciseAngina,Oldpeak,ST_Slope])
+        
+        if prediction==1:
+            st.write("The patient has Heart Disease")
+        else:
+            st.write("The patient does not have Heart Disease")
     
     
 

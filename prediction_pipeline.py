@@ -61,16 +61,15 @@ def breast_cancer_prediction(data):
 
 def heart_disease_prediction(data):
     
-    with open("src/Breast-Cancer/scaler.pkl", "rb") as f:
+    with open("src/Heart-Disease/scaler.pkl", "rb") as f:
         scaler = pickle.load(f)
 
     data = np.array(data).reshape(1,-1)
     scaled_data = scaler.transform(data)
     
-    with open("src/Breast-Cancer/model.pkl", "rb") as f:
+    with open("src/Heart-Disease/heart_model.pkl", "rb") as f:
         model = pickle.load(f)
         
     pred = model.predict(scaled_data)
-    
     
     return pred
