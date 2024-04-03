@@ -26,9 +26,9 @@ jobs:
         run: streamlit run app.py
 
       - name: Publish to Hugging Face Spaces
-        uses: hf spaces push -o "praj2408/Onsite-Health-Diagnostic"
+        uses: hf spaces push -o praj2408/Onsite-Health-Diagnostic
         with:
-          spaces_repo: "praj2408/Onsite-Health-Diagnostic"
+          spaces_repo: praj2408/Onsite-Health-Diagnostic
           api_key: ${{ secrets.HUGGINGFACE_API_KEY }}
           filename: "app.py"
-          model_id: "praj2408/Onsite-Health-Diagnostic"
+          model_id: praj2408/Onsite-Health-Diagnostic
