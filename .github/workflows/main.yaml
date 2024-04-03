@@ -1,34 +1,19 @@
-name: Deploy Streamlit App to Hugging Face Spaces
-
+name: Sync to Hugging Face hub
 on:
   push:
-    branches:
-      - main
+    branches: [main]
+  # to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
         with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pip install streamlit
-          pip install -r requirements.txt
-          pip install tensorflow 
-          pip install huggingface_hub
-          
-
-      - name: Run Streamlit app
-        run: streamlit run app.py
-
-      - name: Publish to Hugging Face Spaces
-        uses: hf spaces push -o praj2408/Onsite-Health-Diagnostic app.py
+          fetch-depth: 0
+          lfs: true
+      - name: Push to hub
         env:
-          HUGGINGFACE_API_KEY: ${{ secrets.HUGGINGFACE_API_KEY }}
+          HF_TOKEN: ${{ secrets.HUGGINGFACE_API_KEY }}
+        run: git push https://praj2408:$HUGGINGFACE_API_KEY@huggingface.co/spaces/praj2408/Onsite-Health-Diagnostic main
