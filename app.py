@@ -4,6 +4,17 @@ from streamlit_extras import add_vertical_space
 import streamlit.components.v1 as components
 from annotated_text import annotated_text
 
+import tensorflow as tf
+from tensorflow import keras
+
+from keras.models import load_model
+from PIL import Image
+import numpy as np
+
+
+from prediction_pipeline import diabetes_prediction
+
+
 
 #st.set_page_config(layout='wide')
 
@@ -17,7 +28,7 @@ with st.sidebar:
     st.title("Onsite Health Diagnostics-OHD")
     
 
-    diseases = ["Diabetes Prediction","Breast Cancer","Heart Disease Prediction","Prediction"]
+    diseases = ["Diabetes Prediction","Breast Cancer","Heart Disease Prediction","Malaria Detection", "Pneumonia Detection", "Brain Tumour Detection"]
 
     
 
@@ -39,8 +50,14 @@ if selected_diseases == "Diabetes Prediction":
     bmi = st.number_input("Body Mass Index (BMI)", 0.0, 67.1, 30.0)
     dpf = st.number_input("Diabetes Pedigree Function", 0.078, 2.42, 0.3725)
     age = st.number_input("Age (years)", 21, 81, 25)
-
-
+    
+    if st.button("Predict"):
+        prediction = diabetes_prediction(data=[pregnancies,glucose,blood_pressure,skin_thickness,insulin,bmi,dpf,age])
+        
+        if prediction==1:
+            st.write("The patient has diabetes")
+        else:
+            st.write("The patient does not have diabetes")
 
 
 if selected_diseases == "Breast Cancer":
@@ -84,3 +101,94 @@ if selected_diseases == "Heart Disease Prediction":
 
 
 
+if selected_diseases == "Malaria Detection":
+    
+    st.title("MALARIA DISEASE DETECTION")
+    
+    
+    uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+    
+    # model = load_model('cnn_model.h5')
+
+    
+    # def preprocess_image(image_file):
+    #     img = Image.open(image_file)
+    #     img = img.resize((64, 64))  # Resize the image to match the input size of the model
+    #     img_array = np.array(img) / 255.0  # Normalize pixel values
+    #     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+    #     return img_array
+    
+    
+    # def predict_malaria(image_file):
+    #     img_array = preprocess_image(image_file)
+    #     prediction = model.predict(img_array)
+    #     return prediction
+        
+    # if uploaded_file is not None:
+    # # Display the uploaded image
+    #     img = Image.open(uploaded_file)
+    #     st.image(img, caption='Uploaded Image', use_column_width=True)
+
+    #     # When the user clicks the predict button
+    #     if st.button("Predict"):
+    #         # Make prediction
+    #         prediction = predict_malaria(uploaded_file)
+    #         # Display prediction
+    #         if prediction[0][0] > 0.5:
+    #             st.error("The image contains malaria parasites.")
+    #         else:
+    #             st.success("The image does not contain malaria parasites.")
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+if selected_diseases == "Pneumonia Detection":
+    
+    st.title("PNEUMONIA DISEASE DETECTION")
+    
+
+    # # Load the pre-trained model
+    # model = load_model('your_model.h5')
+
+    # # Function to preprocess the image
+    # def preprocess_image(image_file):
+    #     img = Image.open(image_file)
+    #     img = img.resize((150, 150))  # Resize the image to match the input size of the model
+    #     img_array = np.array(img) / 255.0  # Normalize pixel values
+    #     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+    #     return img_array
+
+    # # Function to make prediction
+    # def predict_pneumonia(image_file):
+    #     img_array = preprocess_image(image_file)
+    #     prediction = model.predict(img_array)
+    #     return prediction
+
+   
+
+    # File uploader for user to upload an image
+    uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+
+    # When the user uploads an image and clicks the predict button
+    # if uploaded_file is not None:
+    #     # Display the uploaded image
+    #     img = Image.open(uploaded_file)
+    #     st.image(img, caption='Uploaded Image', use_column_width=True)
+
+    #     # When the user clicks the predict button
+    #     if st.button("Predict"):
+    #         # Make prediction
+    #         prediction = predict_pneumonia(uploaded_file)
+    #         # Display prediction
+    #         if prediction[0][0] > 0.5:
+    #             st.error("The image indicates pneumonia.")
+    #         else:
+    #             st.success("The image is normal.")
