@@ -73,3 +73,10 @@ def heart_disease_prediction(data):
     pred = model.predict(scaled_data)
     
     return pred
+
+
+
+
+
+def malaria_detection():
+    pass

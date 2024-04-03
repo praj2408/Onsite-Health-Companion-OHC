@@ -160,46 +160,41 @@ if selected_diseases == "Malaria Detection":
     
     uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
-    
-    # model = load_model('cnn_model.h5')
-
-    
-    # def preprocess_image(image_file):
-    #     img = Image.open(image_file)
-    #     img = img.resize((64, 64))  # Resize the image to match the input size of the model
-    #     img_array = np.array(img) / 255.0  # Normalize pixel values
-    #     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
-    #     return img_array
-    
-    
-    # def predict_malaria(image_file):
-    #     img_array = preprocess_image(image_file)
-    #     prediction = model.predict(img_array)
-    #     return prediction
+    if uploaded_file is not None:
+        # Display the uploaded image
+        image = Image.open(uploaded_file)
+        st.image(image, caption='Uploaded Image', use_column_width=True)
         
-    # if uploaded_file is not None:
-    # # Display the uploaded image
-    #     img = Image.open(uploaded_file)
-    #     st.image(img, caption='Uploaded Image', use_column_width=True)
+    model = load_model('src/Malaria-Detection/malaria.h5')
 
-    #     # When the user clicks the predict button
-    #     if st.button("Predict"):
-    #         # Make prediction
-    #         prediction = predict_malaria(uploaded_file)
-    #         # Display prediction
-    #         if prediction[0][0] > 0.5:
-    #             st.error("The image contains malaria parasites.")
-    #         else:
-    #             st.success("The image does not contain malaria parasites.")
+    
+    def preprocess_image(image_file):
+        img = Image.open(image_file)
+        img = img.resize((128, 128))  # Resize the image to match the input size of the model
+        img_array = np.array(img) / 255.0  # Normalize pixel values
+        img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+        return img_array
+    
+    
+    def predict_malaria(image_file):
+        img_array = preprocess_image(image_file)
+        prediction = model.predict(img_array)
+        return prediction
+        
+
+        # When the user clicks the predict button
+    if st.button("Predict"):
+        # Make prediction
+        prediction = predict_malaria(uploaded_file)
+        # Display prediction
+        if prediction[0][0] > 0.5:
+            st.success("The image does not contain malaria parasites.")
+        else:
+            st.error("The image contains malaria parasites.")
                 
                 
                 
-                
-                
-                
-                
-                
-                
+ 
                 
                 
 if selected_diseases == "Pneumonia Detection":
