@@ -55,9 +55,9 @@ if selected_diseases == "Diabetes Prediction":
         prediction = diabetes_prediction(data=[pregnancies,glucose,blood_pressure,skin_thickness,insulin,bmi,dpf,age])
         
         if prediction==1:
-            st.write("The patient has diabetes")
+            st.error("The patient has diabetes")
         else:
-            st.write("The patient does not have diabetes")
+            st.success("The patient does not have diabetes")
 
 
 if selected_diseases == "Breast Cancer":
@@ -82,9 +82,9 @@ if selected_diseases == "Breast Cancer":
         prediction = breast_cancer_prediction(data=[radius_mean,area_mean,compactness_mean,concavity_mean,concave_points_mean,area_worst,compactness_worst,concavity_worst,area_se,fractal_dimension_se,symmetry_worst,fractal_dimension_worst])
         
         if prediction==1:
-            st.write("The patient has Breast Cancer")
+            st.error("The patient has Breast Cancer")
         else:
-            st.write("The patient does not have Breast Cancer")
+            st.success("The patient does not have Breast Cancer")
 
 
 
@@ -147,9 +147,9 @@ if selected_diseases == "Heart Disease Prediction":
         prediction = heart_disease_prediction(data=[age,sex,ChestPainType,RestingBP,Cholesterol,FastingBS,RestingECG,MaxHR,ExerciseAngina,Oldpeak,ST_Slope])
         
         if prediction==1:
-            st.write("The patient has Heart Disease")
+            st.error("The patient has Heart Disease")
         else:
-            st.write("The patient does not have Heart Disease")
+            st.success("The patient does not have Heart Disease")
     
     
 
@@ -202,22 +202,22 @@ if selected_diseases == "Pneumonia Detection":
     st.title("PNEUMONIA DISEASE DETECTION")
     
 
-    # # Load the pre-trained model
-    # model = load_model('your_model.h5')
+    # Load the pre-trained model
+    model = load_model('src/Pneumonia-Detection/pneumonia_detection.h5')
 
-    # # Function to preprocess the image
-    # def preprocess_image(image_file):
-    #     img = Image.open(image_file)
-    #     img = img.resize((150, 150))  # Resize the image to match the input size of the model
-    #     img_array = np.array(img) / 255.0  # Normalize pixel values
-    #     img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
-    #     return img_array
+    # Function to preprocess the image
+    def preprocess_image(image_file):
+        img = Image.open(image_file)
+        img = img.resize((150, 150))  # Resize the image to match the input size of the model
+        img_array = np.array(img) / 255.0  # Normalize pixel values
+        img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
+        return img_array
 
-    # # Function to make prediction
-    # def predict_pneumonia(image_file):
-    #     img_array = preprocess_image(image_file)
-    #     prediction = model.predict(img_array)
-    #     return prediction
+    # Function to make prediction
+    def predict_pneumonia(image_file):
+        img_array = preprocess_image(image_file)
+        prediction = model.predict(img_array)
+        return prediction
 
    
 
@@ -225,17 +225,25 @@ if selected_diseases == "Pneumonia Detection":
     uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
     # When the user uploads an image and clicks the predict button
-    # if uploaded_file is not None:
-    #     # Display the uploaded image
-    #     img = Image.open(uploaded_file)
-    #     st.image(img, caption='Uploaded Image', use_column_width=True)
+    if uploaded_file is not None:
+        # Display the uploaded image
+        img = Image.open(uploaded_file)
+        st.image(img, caption='Uploaded Image', use_column_width=True)
 
-    #     # When the user clicks the predict button
-    #     if st.button("Predict"):
-    #         # Make prediction
-    #         prediction = predict_pneumonia(uploaded_file)
-    #         # Display prediction
-    #         if prediction[0][0] > 0.5:
-    #             st.error("The image indicates pneumonia.")
-    #         else:
-    #             st.success("The image is normal.")
+        # When the user clicks the predict button
+        if st.button("Predict"):
+            # Make prediction
+            prediction = predict_pneumonia(uploaded_file)
+            # Display prediction
+            if prediction[0][0] > 0.5:
+                st.error("The image indicates pneumonia.")
+            else:
+                st.success("The image is normal.")
+
+
+
+if selected_diseases == "Brain Tumour Detection":
+    
+    st.title("BRAIN TUMOUR DETECTION")
+    
+    st.write("Working on it, coming soon!")
