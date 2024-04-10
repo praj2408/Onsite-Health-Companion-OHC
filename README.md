@@ -12,7 +12,7 @@ license: mit
 
 
 # Onsite-Health-Companion (OHC)
-Onsite Health Diagnostic (OHD) is the web application that allows users to predict whether the user has been infected with a menacing disease or not. These diseases can be very dangerous to health if they are not treated properly. The main objective of OHD is to help people predict the disease in case of absence of medical professionals, strikes or any related uncertainties.
+Onsite Health Companion (OHC) is the web application that allows users to predict whether the user has been infected with a menacing disease or not. These diseases can be very dangerous to health if they are not treated properly. The main objective of OHC is to help people predict the disease in case of absence of medical professionals, strikes or any related uncertainties.
 
 ## Website
 link:
@@ -37,7 +37,7 @@ link:
 
 1. Clone the repository:
 ```
-git clone https://github.com/praj2408/Onsite-Health-Diagnostics
+git clone https://github.com/praj2408/Onsite-Health-Companion-OHC
 ```
 2. Install dependencies
 ```
