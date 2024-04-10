@@ -11,7 +11,7 @@ license: mit
 ---
 
 
-# Onsite-Health-Diagnostic (OHD)
+# Onsite-Health-Companion (OHC)
 Onsite Health Diagnostic (OHD) is the web application that allows users to predict whether the user has been infected with a menacing disease or not. These diseases can be very dangerous to health if they are not treated properly. The main objective of OHD is to help people predict the disease in case of absence of medical professionals, strikes or any related uncertainties.
 
 ## Website
